@@ -122,7 +122,6 @@ def download(url, sheet, reqFields, outPath):
 def openurl(url):
     try:
         socket = urllib.request.urlopen(url)
-        return socket
     except urllib.error.HTTPError as e:
         errfile.write(str(now()) + ' file download HTTPError is ' + str(e.code) + ' . End progress\n')
         logfile.write(str(now()) + ' error and end progress\n')
@@ -137,6 +136,8 @@ def openurl(url):
         errfile.write(str(now()) + ' generic exception: ' + str(traceback.format_exc()) + ' . End progress\n')
         logfile.write(str(now()) + ' error and end progress\n')
         sys.exit('generic exception: ' + traceback.format_exc())
+
+    return socket
 
 def fpkey(data, col, keyCol):
     mystring = ''
